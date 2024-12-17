@@ -1,0 +1,25 @@
+<div class="game-manager-container">
+  <!-- Player 1 Panel -->
+  <mat-card class="player-panel red">
+    <mat-card-title>Painel do Jogador 1</mat-card-title>
+    <mat-card-content>
+      <p>Pontuação: {{ score1 }}</p>
+      <div class="button-container">
+        <button mat-raised-button color="primary" (click)="updateScore('player1', 1)">+1</button>
+        <button mat-raised-button color="warn" (click)="updateScore('player1', -1)">-1</button>
+      </div>
+    </mat-card-content>
+  </mat-card>
+
+  <!-- Player 2 Panel -->
+  <mat-card class="player-panel blue">
+    <mat-card-title>Painel do Jogador 2</mat-card-title>
+    <mat-card-content>
+      <p>Pontuação: {{ score2 }}</p>
+      <div class="button-container">
+        <button mat-raised-button color="primary" (click)="updateScore('player2', 1)">+1</button>
+        <button mat-raised-button color="warn" (click)="updateScore('player2', -1)">-1</button>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

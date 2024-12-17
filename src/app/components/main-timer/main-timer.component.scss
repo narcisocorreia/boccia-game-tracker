@@ -1,0 +1,21 @@
+.timer-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+
+  mat-card {
+    text-align: center;
+    padding: 20px;
+
+    .timer-display {
+      font-size: 3rem;
+      margin: 20px 0;
+    }
+
+    .button-container {
+      display: flex;
+      justify-content: space-around;
+    }
+  }
+}
