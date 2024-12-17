@@ -1,0 +1,13 @@
+.players-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px; // Spacing between boxes
+  padding: 20px;
+
+  // Media query for phone-sized screens
+  @media (max-width: 600px) {
+    flex-direction: column; // Stack vertically on phone screens
+    gap: 10px; // Reduce spacing for small screens
+  }
+}
