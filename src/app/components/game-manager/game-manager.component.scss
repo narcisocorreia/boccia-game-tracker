@@ -11,3 +11,57 @@
     gap: 10px; // Reduce spacing for small screens
   }
 }
+
+.game-header {
+  text-align: center;
+  padding: 20px 0;
+  margin-bottom: 20px;
+  background: linear-gradient(90deg, #ff4d4d, #4d94ff);
+  color: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+  .game-title {
+    h1 {
+      font-size: 3rem;
+      font-weight: bold;
+      margin: 0;
+      letter-spacing: 1.5px; /* Slight letter spacing */
+      text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); /* Subtle shadow */
+      color: #ffffff; /* White text for contrast */
+    }
+
+    .player-names {
+      margin: 20px 0;
+      font-size: 1.8rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 15px;
+
+      span {
+        font-weight: bold;
+        color: white; /* White text for player names */
+        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5); /* Subtle shadow for readability */
+      }
+
+      .vs {
+        color: #cccccc; /* Neutral gray for "vs" */
+        font-size: 1.8rem; /* Same size as names */
+        font-weight: 500; /* Slightly lighter than player names */
+        text-shadow: none; /* Remove shadow for simplicity */
+      }
+    }
+
+    .partial {
+      font-size: 1.4rem;
+      margin-top: 10px;
+      font-style: normal; /* Remove italic for a cleaner look */
+      color: #eeeeee; /* Softer white for differentiation */
+      letter-spacing: 0.5px; /* Slight letter spacing */
+      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5); /* Subtle shadow */
+      border-top: 2px solid rgba(255, 255, 255, 0.3); /* Add a subtle separator */
+      padding-top: 5px; /* Add spacing after separator */
+    }
+  }
+}

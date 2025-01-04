@@ -19,8 +19,8 @@ export class GameService {
     redPlayer: string;
     bluePlayer: string;
   }>({
-    redPlayer: '',
-    bluePlayer: '',
+    redPlayer: 'Ze',
+    bluePlayer: 'Tone',
   });
 
   /**
