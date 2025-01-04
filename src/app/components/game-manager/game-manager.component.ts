@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { GameService } from '../../services/game.service';
 import { PlayerComponent } from '../player/player.component';
 
 @Component({
@@ -8,4 +9,13 @@ import { PlayerComponent } from '../player/player.component';
   templateUrl: './game-manager.component.html',
   styleUrls: ['./game-manager.component.scss'],
 })
-export class GameManagerComponent {}
+export class GameManagerComponent {
+  redPlayer: string = '';
+  bluePlayer: string = '';
+  constructor(private gameService: GameService) {
+    this.gameService.gameState.subscribe((state) => {
+      this.redPlayer = state.redPlayer;
+      this.bluePlayer = state.bluePlayer;
+    });
+  }
+}

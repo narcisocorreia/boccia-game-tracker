@@ -1,0 +1,188 @@
+.first-page-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  padding: 20px;
+  box-sizing: border-box;
+
+  @media (min-width: 768px) {
+    height: auto;
+  }
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 20px;
+
+  .title h1 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #333;
+    margin: 0;
+    text-transform: uppercase;
+  }
+
+  .balls {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 10px;
+
+    .ball {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      .svg-ball {
+        width: 50px;
+        height: 50px;
+        cursor: pointer;
+        fill: black; // Change color to black
+        transition: transform 0.3s, fill 0.3s;
+
+        &.red {
+          fill: #e53935;
+        }
+
+        &.blue {
+          fill: #1e88e5;
+        }
+
+        &:hover {
+          transform: scale(1.1);
+        }
+      }
+    }
+  }
+}
+
+.player-forms {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  margin-bottom: 20px;
+
+  .form-card {
+    width: 100%;
+    max-width: 300px;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+
+    &.red {
+      background: linear-gradient(to bottom, #ffe6e6, #ffcccc);
+      border: 1px solid #e53935;
+    }
+
+    &.blue {
+      background: linear-gradient(to bottom, #e6f0ff, #cce4ff);
+      border: 1px solid #1e88e5;
+    }
+
+    mat-card-title {
+      text-transform: uppercase;
+    }
+
+    mat-card-title {
+      font-size: 1.4rem;
+      font-weight: bold;
+      text-align: center;
+    }
+
+    mat-card-content {
+      display: flex;
+      justify-content: center;
+      margin-top: 1rem;
+
+      .player-input {
+        width: 100%;
+
+        mat-form-field {
+          width: 100%;
+          background-color: transparent; /* Default transparent background */
+          border-radius: 5px;
+
+          &.error {
+            .mat-form-field-flex {
+              background-color: rgba(255, 0, 0, 0.1); /* Light red background */
+              border: 1px solid red; /* Red border */
+            }
+
+            .mat-form-field-underline {
+              background-color: red !important; /* Red underline for error */
+            }
+
+            .mat-form-field-label {
+              color: red !important; /* Red label text */
+            }
+          }
+        }
+      }
+    }
+  }
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: center;
+
+    .form-card {
+      max-width: 100%;
+    }
+  }
+}
+
+.start-button-container {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.start-button {
+  width: 220px; /* Button width */
+  font-size: 1rem; /* Font size */
+  font-weight: bold;
+  background-color: #c5c5c5; /* Slightly darker soft gray */
+  color: black; /* Black text */
+  border: none;
+  padding: 12px 24px; /* Padding for size */
+  border-radius: 8px; /* Reduced border-radius for a sharper look */
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  transition: background-color 0.3s ease, transform 0.2s ease,
+    box-shadow 0.3s ease;
+
+  &:hover {
+    background-color: #d6d6d6; /* Slightly darker gray on hover */
+    transform: translateY(-2px); /* Subtle lift */
+    box-shadow: 0px 6px 8px rgba(0, 0, 0, 0.15); /* Slightly larger shadow */
+  }
+
+  &:active {
+    background-color: #cccccc; /* Even darker gray when clicked */
+    transform: translateY(1px); /* Slightly pressed */
+    box-shadow: 0px 3px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  }
+
+  @media (max-width: 768px) {
+    max-width: 180px;
+    font-size: 0.9rem;
+    padding: 10px 20px;
+  }
+
+  @media (max-width: 480px) {
+    max-width: 100%;
+    font-size: 0.85rem;
+    padding: 10px;
+  }
+}
+
+@media (min-width: 768px) {
+  .player-forms {
+    flex-direction: row; /* Arrange side by side */
+  }
+
+  .start-button-container {
+    grid-column: span 2;
+    text-align: center;
+  }
+}
