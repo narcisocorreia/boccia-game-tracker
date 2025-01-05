@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import {
+  AbstractControl,
   FormControl,
   FormGroup,
   FormsModule,
@@ -32,26 +33,81 @@ import { GameService } from '../../services/game.service';
 export class StartComponent {
   // Reactive Form
   playerForm = new FormGroup({
-    redPlayer: new FormControl('', [Validators.required]), // Player 1 name field with validation
-    bluePlayer: new FormControl('', [Validators.required]), // Player 2 name field with validation
+    redPlayer: new FormControl('', [Validators.required]),
+    bluePlayer: new FormControl('', [Validators.required]),
+    redTimer: new FormControl('06:00', [
+      Validators.required,
+      this.timeValidator('02:00', '07:00'),
+    ]),
+    blueTimer: new FormControl('06:00', [
+      Validators.required,
+      this.timeValidator('02:00', '07:00'),
+    ]),
+  });
+
+  settingsForm = new FormGroup({
+    ends: new FormControl(4, [Validators.required]),
+    timeBetweenEnds: new FormControl('01:00', [Validators.required]),
   });
 
   constructor(private GameService: GameService, private router: Router) {}
 
+  // Custom Validator for Time
+  private timeValidator(min: string, max: string) {
+    return (control: AbstractControl) => {
+      const value = control.value;
+      if (!value) {
+        return { required: true };
+      }
+      const [minMinutes, minSeconds] = min.split(':').map(Number);
+      const [maxMinutes, maxSeconds] = max.split(':').map(Number);
+      const [currentMinutes, currentSeconds] = value.split(':').map(Number);
+
+      if (
+        currentMinutes < minMinutes ||
+        (currentMinutes === minMinutes && currentSeconds < minSeconds) ||
+        currentMinutes > maxMinutes ||
+        (currentMinutes === maxMinutes && currentSeconds > maxSeconds)
+      ) {
+        return { invalidTime: true };
+      }
+      return null;
+    };
+  }
+
   // Submit Function
   startGame(): void {
-    if (this.playerForm.invalid) {
+    if (this.playerForm.invalid || this.settingsForm.invalid) {
       return;
     }
 
-    // Retrieve the values of player names
-    const player1Name = this.playerForm.get('redPlayer')?.value;
-    const player2Name = this.playerForm.get('bluePlayer')?.value;
+    const redPlayer = this.playerForm.get('redPlayer')?.value;
+    const bluePlayer = this.playerForm.get('bluePlayer')?.value;
+    const ends = this.settingsForm.get('ends')?.value;
+    const timeBetweenEnds = this.convertTimeToMinutes(
+      this.settingsForm.get('timeBetweenEnds')?.value ?? '00:00'
+    );
+    const redTimer = this.convertTimeToMinutes(
+      this.playerForm.value.redTimer ?? '00:00'
+    );
+    const blueTimer = this.convertTimeToMinutes(
+      this.playerForm.value.blueTimer ?? '00:00'
+    );
 
-    this.GameService.updatePlayerNames(player1Name!, player2Name!);
-    // Add game-starting logic here
+    this.GameService.setUpGame(
+      redPlayer!,
+      bluePlayer!,
+      redTimer!,
+      blueTimer!,
+      ends!,
+      timeBetweenEnds!
+    );
 
-    // Navigate to the game route using Angular router
     this.router.navigate(['/game']);
+  }
+
+  private convertTimeToMinutes(time: string): number {
+    const [minutes, seconds] = time.split(':').map(Number);
+    return minutes * 60 + seconds;
   }
 }

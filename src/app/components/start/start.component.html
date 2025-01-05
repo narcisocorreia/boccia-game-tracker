@@ -26,6 +26,7 @@
     </div>
   </div>
 
+
   <!-- Player Forms -->
   <div class="player-forms">
     <mat-card class="form-card red">
@@ -41,6 +42,19 @@
               Nome é obrigatório
             </mat-error>
           </mat-form-field>
+
+          <!-- Timer Input -->
+          <div class="timer-container">
+            <h3 class="option-title">Player Timer</h3>
+            <mat-form-field appearance="outline" class="timer-input">
+              <mat-label>Set Time</mat-label>
+              <input matInput formControlName="redTimer" type="time" />
+              <mat-error *ngIf="playerForm.get('redTimer')?.hasError('invalidTime')">
+                Timer must be between 2:00 and 7:00
+              </mat-error>
+            </mat-form-field>
+          </div>
+
         </form>
       </mat-card-content>
     </mat-card>
@@ -58,15 +72,66 @@
               Nome é obrigatório
             </mat-error>
           </mat-form-field>
+
+          <!-- Timer Input -->
+          <div class="timer-container">
+            <h3 class="option-title">Player Timer</h3>
+            <mat-form-field appearance="outline" class="timer-input">
+              <mat-label>Set Time</mat-label>
+              <input matInput formControlName="blueTimer" type="time" />
+              <mat-error *ngIf="playerForm.get('blueTimer')?.hasError('invalidTime')">
+                Timer must be between 2:00 and 7:00
+              </mat-error>
+            </mat-form-field>
+          </div>
         </form>
       </mat-card-content>
     </mat-card>
   </div>
 
-  <!-- Start Game Button -->
-  <div class="start-button-container">
-    <button mat-raised-button class="start-button" [disabled]="playerForm.invalid" (click)="startGame()">
-      Start Game
-    </button>
+
+  <!-- Game Settings -->
+  <div class="settings-box">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Game Settings</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <form [formGroup]="settingsForm">
+          <div class="settings-row">
+            <!-- Number of Ends -->
+            <div class="option-container">
+              <h3 class="option-title">Number of Ends</h3>
+              <div class="ends-options">
+                <div class="ends-option" [ngClass]="{ selected: settingsForm.value.ends === 4 }"
+                  (click)="settingsForm.controls['ends'].setValue(4)">
+                  4 (Default)
+                </div>
+                <div class="ends-option" [ngClass]="{ selected: settingsForm.value.ends === 6 }"
+                  (click)="settingsForm.controls['ends'].setValue(6)">
+                  6
+                </div>
+              </div>
+            </div>
+
+            <!-- Time Between Ends -->
+            <div class="option-container">
+              <h3 class="option-title">Time Between Ends</h3>
+              <mat-form-field appearance="outline" class="settings-input">
+                <mat-label>Set Time</mat-label>
+                <input matInput formControlName="timeBetweenEnds" type="time" />
+              </mat-form-field>
+            </div>
+          </div>
+          <!-- Start Game Button -->
+          <div class="start-button-container">
+            <button mat-raised-button class="start-button" [disabled]="settingsForm.invalid || playerForm.invalid"
+              (click)="startGame()">
+              Start Game
+            </button>
+          </div>
+        </form>
+      </mat-card-content>
+    </mat-card>
   </div>
 </div>
