@@ -1,0 +1,123 @@
+.end-game-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.8); // Dark overlay for contrast
+  z-index: 1000;
+
+  .modal-content {
+    background: white; // White modal background
+    padding: 50px;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 600px;
+    width: 95%;
+    text-align: center;
+  }
+
+  .modal-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #333;
+  }
+
+  .players-container {
+    display: flex;
+    gap: 40px;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 30px;
+  }
+
+  .red-player-display,
+  .blue-player-display {
+    width: 220px;
+    padding: 20px;
+    border-radius: 15px;
+    color: white;
+    text-align: center;
+    font-family: Arial, sans-serif;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    opacity: 0.95; // Slight transparency while keeping solid colors
+
+    h2 {
+      margin: 0;
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    h3 {
+      font-size: 50px;
+      margin: 10px 0;
+      font-weight: bold;
+    }
+  }
+
+  .red-player-display {
+    background: rgba(
+      229,
+      57,
+      53,
+      0.95
+    ); // Stronger red with slight transparency
+  }
+
+  .blue-player-display {
+    background: rgba(
+      30,
+      136,
+      229,
+      0.95
+    ); // Stronger blue with slight transparency
+  }
+
+  .confirmation-text {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #444;
+  }
+
+  .button-container {
+    display: flex;
+    gap: 20px;
+    margin-top: 10px;
+
+    button {
+      padding: 12px 24px;
+      font-size: 18px;
+      font-weight: bold;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s ease-in-out;
+    }
+
+    .confirm-btn {
+      background: #4caf50; // Green confirm button
+      color: white;
+
+      &:hover {
+        background: #43a047;
+      }
+    }
+
+    .cancel-btn {
+      background: #f44336; // Red cancel button
+      color: white;
+
+      &:hover {
+        background: #d32f2f;
+      }
+    }
+  }
+}

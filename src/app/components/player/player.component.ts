@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { GameService, Player } from '../../services/game.service';
+import { TimeService } from '../../services/time.service';
 
 @Component({
   selector: 'app-player',
@@ -21,7 +22,7 @@ export class PlayerComponent implements OnInit {
 
   iconStates: boolean[] = Array(6).fill(false);
 
-  constructor(private gameService: GameService) {}
+  constructor(private gameService: GameService, private timeService: TimeService) {}
 
   ngOnInit() {
     if (this.player) {
@@ -40,6 +41,10 @@ export class PlayerComponent implements OnInit {
       clearInterval(this.timerInterval);
     } else {
       this.timerInterval = setInterval(() => {
+        if (this.timeService.areTimersPaused()) {
+          return; // Do nothing while globally paused
+        }
+
         if (this.timer > 0) {
           this.timer--;
         } else {
@@ -50,6 +55,7 @@ export class PlayerComponent implements OnInit {
     }
     this.timerRunning = !this.timerRunning;
   }
+
 
   increment() {
     if (this.color === 'red') {

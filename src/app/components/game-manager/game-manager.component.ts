@@ -3,6 +3,7 @@ import { Component, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { GameService, Player } from '../../services/game.service';
 import { ConfirmationModalComponent } from '../confirmation-modal/confirmation-modal.component';
+import { EndGameModalComponent } from '../end-game-modal/end-game-modal.component';
 import { PlayerComponent } from '../player/player.component';
 import { TimerModalComponent } from '../timer-modal/timer-modal.component';
 
@@ -39,7 +40,7 @@ export class GameManagerComponent {
       this.timeBetweenEnds = settings.timeBetweenEnds;
     });
 
-    this.openTimerModal(1); // Open with a 2-minute timer on page load
+    this.openTimerModal(GAME_START_TIME); // Open with a 2-minute timer on page load
   }
 
   openTimerModal(duration: number): void {
@@ -66,6 +67,17 @@ export class GameManagerComponent {
         this.redPlayerComponent.resetEnd();
         this.bluePlayerComponent.resetEnd();
       }
+    });
+  }
+
+  endGame(): void {
+    this.dialog.open(EndGameModalComponent, {
+      panelClass: 'full-screen-dialog', // For fullscreen modal styling
+      disableClose: true, // Prevent closing by clicking outside
+      data: {
+        redPLayer: this.redPlayer,
+        bluePlayer: this.bluePlayer,
+      },
     });
   }
 }
