@@ -1,15 +1,11 @@
 .players-container {
+  height: 80%;
+  width: 100%;
+
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 20px; // Spacing between boxes
-  padding: 20px;
-
-  // Media query for phone-sized screens
-  @media (max-width: 600px) {
-    flex-direction: column; // Stack vertically on phone screens
-    gap: 10px; // Reduce spacing for small screens
-  }
+  gap: 30px;
 }
 
 .game-header {
@@ -18,82 +14,49 @@
   margin-bottom: 20px;
   background: linear-gradient(90deg, #ff4d4d, #4d94ff);
   color: white;
-  border-radius: 10px;
+  border-radius: 1re;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 
-  .game-title {
-    h1 {
-      font-size: 3rem;
-      font-weight: bold;
-      margin: 0;
-      letter-spacing: 1.5px; /* Slight letter spacing */
-      text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); /* Subtle shadow */
-      color: #ffffff; /* White text for contrast */
+  .partials-container {
+    text-align: center;
+    margin: 20px 0;
+
+    h3 {
+      font-size: 1.5rem;
+      margin-bottom: 10px;
+      color: #333;
     }
 
-    .player-names {
-      margin: 20px 0;
-      font-size: 1.8rem;
+    .partials {
       display: flex;
       justify-content: center;
-      align-items: center;
       gap: 15px;
 
-      span {
+      .partial {
+        padding: 10px 15px;
+        border-radius: 15px;
+        color: #555;
+        font-size: 1rem;
         font-weight: bold;
-        color: white; /* White text for player names */
-        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5); /* Subtle shadow for readability */
-      }
+        transition: all 0.3s ease;
+        position: relative;
+        cursor: pointer;
 
-      .vs {
-        color: #cccccc; /* Neutral gray for "vs" */
-        font-size: 1.8rem; /* Same size as names */
-        font-weight: 500; /* Slightly lighter than player names */
-        text-shadow: none; /* Remove shadow for simplicity */
-      }
-    }
+        &.current {
+          background-color: #4caf50; /* Highlight current end */
+          color: white;
+          transform: scale(1.1);
+          box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+        }
 
-    .partials-container {
-      text-align: center;
-      margin: 20px 0;
+        &:not(.current):hover {
+          background-color: #f0f0f0; /* Light gray on hover */
+        }
 
-      h3 {
-        font-size: 1.5rem;
-        margin-bottom: 10px;
-        color: #333;
-      }
-
-      .partials {
-        display: flex;
-        justify-content: center;
-        gap: 15px;
-
-        .partial {
-          padding: 10px 15px;
-          border-radius: 15px;
-          color: #555;
+        span {
+          display: inline-block;
           font-size: 1rem;
-          font-weight: bold;
-          transition: all 0.3s ease;
-          position: relative;
-          cursor: pointer;
-
-          &.current {
-            background-color: #4caf50; /* Highlight current end */
-            color: white;
-            transform: scale(1.1);
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-          }
-
-          &:not(.current):hover {
-            background-color: #f0f0f0; /* Light gray on hover */
-          }
-
-          span {
-            display: inline-block;
-            font-size: 1rem;
-            color: inherit;
-          }
+          color: inherit;
         }
       }
     }

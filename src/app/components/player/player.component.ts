@@ -1,13 +1,14 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
+import { MatIconModule } from '@angular/material/icon';
 import { GameService, Player } from '../../services/game.service';
 import { TimeService } from '../../services/time.service';
 
 @Component({
   selector: 'app-player',
   standalone: true,
-  imports: [MatCardModule, CommonModule],
+  imports: [MatCardModule, CommonModule, MatIconModule],
   templateUrl: './player.component.html',
   styleUrls: ['./player.component.scss'],
 })
@@ -22,7 +23,10 @@ export class PlayerComponent implements OnInit {
 
   iconStates: boolean[] = Array(6).fill(false);
 
-  constructor(private gameService: GameService, private timeService: TimeService) {}
+  constructor(
+    private gameService: GameService,
+    private timeService: TimeService
+  ) {}
 
   ngOnInit() {
     if (this.player) {
@@ -56,7 +60,6 @@ export class PlayerComponent implements OnInit {
     this.timerRunning = !this.timerRunning;
   }
 
-
   increment() {
     if (this.color === 'red') {
       this.gameService.updateRedPlayerScore(this.player!.score + 1);
@@ -68,9 +71,9 @@ export class PlayerComponent implements OnInit {
   decrement() {
     if (this.player!.score > 0) {
       if (this.color === 'red') {
-      this.gameService.updateRedPlayerScore(this.player!.score - 1);
+        this.gameService.updateRedPlayerScore(this.player!.score - 1);
       } else {
-      this.gameService.updateBluePlayerScore(this.player!.score - 1);
+        this.gameService.updateBluePlayerScore(this.player!.score - 1);
       }
     }
   }

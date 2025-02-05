@@ -1,5 +1,5 @@
 <div class="timer-overlay">
-  <div class="timer-display">
+  <div class="timer-display" (click)="stopTimer()">
     {{ minutes }}:{{ seconds | number: '2.0-0' }}
   </div>
 </div>

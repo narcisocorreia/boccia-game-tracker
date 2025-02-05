@@ -1,20 +1,12 @@
 <div class="game-header">
   <div class="game-title">
-    <h1>Boccia Game Tracker</h1>
-    <div class="player-names">
-      <span>{{ redPlayer!.name }}</span>
-      <span class="vs">VS</span>
-      <span>{{ bluePlayer!.name }}</span>
-    </div>
     <div class="partials-container">
-      <h3>Parcials</h3>
       <div class="partials">
         <div (click)="nextEnd(i + 1)" *ngFor="let end of ends; let i = index" class="partial"
           [ngClass]="{ current: i + 1 === currentEnd }" (mouseenter)="hoveredIndex = i + 1"
           (mouseleave)="hoveredIndex = null">
-          <span>Parcial {{ i + 1 }}</span>
+          <span>Parcial {{ i + 1 }} </span>
         </div>
-
         <div class="partial" (click)="endGame()">
           <span> Acabar Jogo</span>
         </div>

@@ -1,7 +1,11 @@
 <mat-card class="player-card" [ngClass]="color">
   <!-- Clickable areas -->
-  <div class="click-area left" (click)="decrement()"></div>
-  <div class="click-area right" (click)="increment()"></div>
+  <div class="click-area left" (click)="decrement()">
+    <mat-icon class="click-icon">remove</mat-icon> <!-- Minus Icon -->
+  </div>
+  <div class="click-area right" (click)="increment()">
+    <mat-icon class="click-icon">add</mat-icon> <!-- Plus Icon -->
+  </div>
 
   <!-- Main card content -->
   <div class="card-content">
