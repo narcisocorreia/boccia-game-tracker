@@ -2,11 +2,17 @@
   <div class="game-title">
     <div class="partials-container">
       <div class="partials">
-        <div (click)="nextEnd(i + 1)" *ngFor="let end of ends; let i = index" class="partial"
-          [ngClass]="{ current: i + 1 === currentEnd }" (mouseenter)="hoveredIndex = i + 1"
+        <div *ngFor="let end of ends; let i = index" class="partial"
+          [ngClass]="{ current: i + 1 === currentEnd, disabled: i + 1 < currentEnd }"
+          (click)="i + 1 >= currentEnd ? nextEnd(i + 1) : null" (mouseenter)="hoveredIndex = i + 1"
           (mouseleave)="hoveredIndex = null">
           <span>Parcial {{ i + 1 }} </span>
         </div>
+
+        <div class="partial">
+          <span> Parcial Extra</span>
+        </div>
+
         <div class="partial" (click)="endGame()">
           <span> Acabar Jogo</span>
         </div>

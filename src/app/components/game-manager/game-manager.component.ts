@@ -52,8 +52,6 @@ export class GameManagerComponent {
   }
 
   nextEnd(newEnd: number): void {
-    this.currentEnd = newEnd;
-
     const dialogRef = this.dialog.open(ConfirmationModalComponent, {
       width: '400px',
       data: {
@@ -63,6 +61,25 @@ export class GameManagerComponent {
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
+        this.currentEnd = newEnd;
+        this.openTimerModal(this.timeBetweenEnds);
+        this.redPlayerComponent.resetEnd();
+        this.bluePlayerComponent.resetEnd();
+      }
+    });
+  }
+
+  extraTurn(): void {
+    const dialogRef = this.dialog.open(ConfirmationModalComponent, {
+      width: '400px',
+      data: {
+        title: `Pertende começar um parcial extra?`,
+      },
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.currentEnd = this.currentEnd++;
         this.openTimerModal(this.timeBetweenEnds);
         this.redPlayerComponent.resetEnd();
         this.bluePlayerComponent.resetEnd();
