@@ -16,7 +16,11 @@ export class TimerModalComponent implements OnInit {
 
   constructor(
     public dialogRef: MatDialogRef<TimerModalComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: { duration: number } // Accept duration as input
+    @Inject(MAT_DIALOG_DATA)
+    public data: { duration: number; warmup: boolean } = {
+      duration: 0,
+      warmup: false,
+    } // Accept duration as input
   ) {}
 
   ngOnInit(): void {
@@ -38,6 +42,19 @@ export class TimerModalComponent implements OnInit {
         this.seconds--;
       } else {
         this.stopTimer();
+        return; // Exit the function to avoid playing the sound twice
+      }
+
+      // Play sounds at specific times
+      const totalSeconds = this.minutes * 60 + this.seconds;
+      if (totalSeconds === 60 && this.data.warmup) {
+        new Audio('assets/1.mp3').play();
+      } else if (totalSeconds === 30) {
+        new Audio('assets/30.mp3').play();
+      } else if (totalSeconds === 10) {
+        new Audio('assets/10.mp3').play();
+      } else if (totalSeconds === 0) {
+        new Audio('assets/time.mp3').play();
       }
     }, 1000);
   }

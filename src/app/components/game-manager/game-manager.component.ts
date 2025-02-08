@@ -54,7 +54,7 @@ export class GameManagerComponent {
     this.dialog.open(TimerModalComponent, {
       panelClass: 'full-screen-dialog', // For fullscreen modal styling
       disableClose: true, // Prevent closing by clicking outside
-      data: { duration }, // Pass the timer duration
+      data: { duration, warmup: duration === GAME_START_TIME ? true : false }, // Pass the timer duration
     });
   }
 

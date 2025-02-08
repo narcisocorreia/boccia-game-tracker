@@ -52,9 +52,19 @@ export class PlayerComponent implements OnInit {
 
         if (this.timer > 0) {
           this.timer--;
+
+          // Play sounds at specific times
+          if (this.timer === 60) {
+            new Audio('assets/1.mp3').play();
+          } else if (this.timer === 30) {
+            new Audio('assets/30.mp3').play();
+          } else if (this.timer === 10) {
+            new Audio('assets/10.mp3').play();
+          }
         } else {
           clearInterval(this.timerInterval);
           this.timerRunning = false;
+          new Audio('assets/time.mp3').play(); // Play sound when time ends
         }
       }, 1000);
     }
