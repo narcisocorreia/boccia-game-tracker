@@ -1,6 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { Router } from '@angular/router';
 import { Player } from '../../services/game.service';
 import { TimeService } from '../../services/time.service';
 
@@ -17,7 +16,6 @@ export class EndGameModalComponent implements OnInit {
 
   constructor(
     private timeService: TimeService,
-    private router: Router,
     public dialogRef: MatDialogRef<EndGameModalComponent>,
     @Inject(MAT_DIALOG_DATA)
     public data: { redPLayer: Player; bluePlayer: Player } // Accept duration as input
@@ -30,9 +28,7 @@ export class EndGameModalComponent implements OnInit {
   }
 
   confirmEndGame(): void {
-    this.dialogRef.close(); // Automatically close the modal
-    this.timeService.resumeTimers(); // Resume timers when modal closes
-    this.router.navigate(['']);
+    this.dialogRef.close(true); // Automatically close the modal
   }
 
   cancelEndGame(): void {

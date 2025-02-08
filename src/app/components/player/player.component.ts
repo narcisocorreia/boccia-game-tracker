@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
-import { GameService, Player } from '../../services/game.service';
+import { GameService, Player, Turn } from '../../services/game.service';
 import { TimeService } from '../../services/time.service';
 
 @Component({
@@ -19,9 +19,10 @@ export class PlayerComponent implements OnInit {
 
   timerRunning: boolean = false;
   timerInterval: any;
-  timer: number = 60;
+  timer: number = 360; // 6 minutes
 
   iconStates: boolean[] = Array(6).fill(false);
+  turnScore: number = 0;
 
   constructor(
     private gameService: GameService,
@@ -61,6 +62,7 @@ export class PlayerComponent implements OnInit {
   }
 
   increment() {
+    this.turnScore++;
     if (this.color === 'red') {
       this.gameService.updateRedPlayerScore(this.player!.score + 1);
     } else {
@@ -70,6 +72,7 @@ export class PlayerComponent implements OnInit {
 
   decrement() {
     if (this.player!.score > 0) {
+      this.turnScore--;
       if (this.color === 'red') {
         this.gameService.updateRedPlayerScore(this.player!.score - 1);
       } else {
@@ -84,7 +87,24 @@ export class PlayerComponent implements OnInit {
   }
 
   resetEnd(): void {
+    const turn = this.createTurn();
+    if (this.color === 'red') {
+      this.gameService.saveRedPlayerTurn(turn);
+    } else {
+      this.gameService.saveBluePlayerTurn(turn);
+    }
     this.iconStates = Array(6).fill(false);
     this.timer = this.player!.timer;
+    this.turnScore = 0;
+  }
+
+  createTurn(): Turn {
+    const ballsUsed = this.iconStates.filter((state) => state).length;
+    const formattedTime = this.formattedTimer;
+    return {
+      score: this.turnScore,
+      time: formattedTime,
+      balls: ballsUsed,
+    };
   }
 }

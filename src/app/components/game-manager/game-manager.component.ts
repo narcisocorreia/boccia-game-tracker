@@ -1,7 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { Component, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { GameService, Player } from '../../services/game.service';
+import { TimeService } from '../../services/time.service';
 import { ConfirmationModalComponent } from '../confirmation-modal/confirmation-modal.component';
 import { EndGameModalComponent } from '../end-game-modal/end-game-modal.component';
 import { PlayerComponent } from '../player/player.component';
@@ -29,7 +31,12 @@ export class GameManagerComponent {
   @ViewChild('redPlayerComponent') redPlayerComponent!: PlayerComponent;
   @ViewChild('bluePlayerComponent') bluePlayerComponent!: PlayerComponent;
 
-  constructor(private gameService: GameService, public dialog: MatDialog) {
+  constructor(
+    private gameService: GameService,
+    private timeService: TimeService,
+    private router: Router,
+    public dialog: MatDialog
+  ) {
     this.gameService.gameState.subscribe((state) => {
       this.redPlayer = state.redPlayer;
       this.bluePlayer = state.bluePlayer;
@@ -88,13 +95,23 @@ export class GameManagerComponent {
   }
 
   endGame(): void {
-    this.dialog.open(EndGameModalComponent, {
+    const dialogRef = this.dialog.open(EndGameModalComponent, {
       panelClass: 'full-screen-dialog', // For fullscreen modal styling
       disableClose: true, // Prevent closing by clicking outside
       data: {
         redPLayer: this.redPlayer,
         bluePlayer: this.bluePlayer,
       },
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.redPlayerComponent.resetEnd();
+        this.bluePlayerComponent.resetEnd();
+        this.gameService.createGameStatsPDF(); // Generate and download the PDF file
+        this.timeService.resumeTimers(); // Resume timers when modal closes
+        this.router.navigate(['']);
+      }
     });
   }
 }
