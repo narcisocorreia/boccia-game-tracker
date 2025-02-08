@@ -39,7 +39,7 @@
         width: 50px;
         height: 50px;
         cursor: pointer;
-        fill: black; // Change color to black
+        fill: black;
         transition: transform 0.3s, fill 0.3s;
 
         &.red {
@@ -69,7 +69,7 @@
     max-width: 300px;
     padding: 20px;
     border-radius: 12px;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 
     &.red {
       background: linear-gradient(to bottom, #ffe6e6, #ffcccc);
@@ -82,13 +82,10 @@
     }
 
     mat-card-title {
-      text-transform: uppercase;
-    }
-
-    mat-card-title {
       font-size: 1.4rem;
       font-weight: bold;
       text-align: center;
+      text-transform: uppercase;
     }
 
     mat-card-content {
@@ -101,21 +98,21 @@
 
         mat-form-field {
           width: 100%;
-          background-color: transparent; /* Default transparent background */
           border-radius: 5px;
+          background-color: transparent;
 
           &.error {
             .mat-form-field-flex {
-              background-color: rgba(255, 0, 0, 0.1); /* Light red background */
-              border: 1px solid red; /* Red border */
+              background-color: rgba(255, 0, 0, 0.1);
+              border: 1px solid red;
             }
 
             .mat-form-field-underline {
-              background-color: red !important; /* Red underline for error */
+              background-color: red !important;
             }
 
             .mat-form-field-label {
-              color: red !important; /* Red label text */
+              color: red !important;
             }
           }
         }
@@ -134,97 +131,94 @@
 }
 
 .settings-box {
-    margin-top: 20px;
+  margin-top: 20px;
 
-    mat-card {
-      background: #f9f9f9;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      border-radius: 10px;
+  mat-card {
+    background: #f9f9f9;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    padding: 20px;
 
-      mat-card-header {
-        text-align: center;
+    mat-card-header {
+      text-align: center;
 
-        mat-card-title {
-          font-size: 1.5rem;
+      mat-card-title {
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: #424242;
+      }
+    }
+
+    .settings-row {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 20px;
+
+      .option-container {
+        flex: 1;
+        min-width: 45%;
+
+        .option-title {
+          font-size: 1.2rem;
           font-weight: bold;
           color: #424242;
+          margin-bottom: 10px;
         }
-      }
 
-      mat-card-content {
-        padding: 20px;
-
-        .settings-row {
+        .ends-options {
           display: flex;
-          justify-content: space-between;
-          flex-wrap: wrap;
-          gap: 20px;
+          flex-direction: column;
+          gap: 10px;
 
-          .option-container {
-            flex: 1;
-            min-width: 45%;
-
-            .option-title {
-              font-size: 1.2rem;
-              font-weight: bold;
-              color: #424242;
-              margin-bottom: 10px;
-            }
-
-            .ends-options {
-              display: flex;
-              flex-direction: column;
-              gap: 10px;
-
-              .ends-option {
-                padding: 10px 15px;
-                border: 1px solid #ddd;
-                border-radius: 5px;
-                text-align: center;
-                cursor: pointer;
-                transition: background-color 0.3s, border-color 0.3s;
-
-                &:hover {
-                  background-color: #f5f5f5;
-                }
-
-                &.selected {
-                  background-color: #e0f7fa;
-                  border-color: #00acc1;
-                  font-weight: bold;
-                  color: #006064;
-                }
-              }
-            }
-
-            mat-form-field {
-              width: 100%;
-            }
-          }
-        }
-
-        .start-button-container {
-          text-align: center;
-          margin-top: 20px;
-
-          .start-button {
-            background-color: #4caf50;
-            color: white;
-            font-weight: bold;
-            padding: 10px 20px;
+          .ends-option {
+            padding: 10px 15px;
+            border: 1px solid #ddd;
             border-radius: 5px;
-            transition: background-color 0.3s;
+            text-align: center;
+            cursor: pointer;
+            transition: background-color 0.3s, border-color 0.3s;
 
             &:hover {
-              background-color: #45a049;
+              background-color: #f5f5f5;
             }
 
-            &:disabled {
-              background-color: #c8e6c9;
-              color: #a5d6a7;
+            &.selected {
+              background-color: #e0f7fa;
+              border-color: #00acc1;
+              font-weight: bold;
+              color: #006064;
             }
           }
+        }
+
+        mat-form-field {
+          width: 100%;
+        }
+      }
+    }
+
+    .start-button-container {
+      text-align: center;
+      margin-top: 20px;
+
+      .start-button {
+        background-color: #4caf50;
+        color: white;
+        font-weight: bold;
+        padding: 10px 20px;
+        border-radius: 5px;
+        transition: background-color 0.3s;
+
+        &:hover {
+          background-color: #45a049;
+        }
+
+        &:disabled {
+          background-color: #c8e6c9;
+          color: #a5d6a7;
         }
       }
     }
   }
+}
