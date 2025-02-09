@@ -1,5 +1,5 @@
 {
-  "name": "boccia-timer",
+  "name": "boccia-game-tracker",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",

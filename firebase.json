@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "public": "dist/boccia-timer",
+    "public": "dist/boccia-game-tracker",
     "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
     "rewrites": [
       {

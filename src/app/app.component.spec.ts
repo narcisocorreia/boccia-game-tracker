@@ -14,16 +14,16 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have the 'boccia-timer' title`, () => {
+  it(`should have the 'boccia-game-tracker' title`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('boccia-timer');
+    expect(app.title).toEqual('boccia-game-tracker');
   });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, boccia-timer');
+    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, boccia-game-tracker');
   });
 });
