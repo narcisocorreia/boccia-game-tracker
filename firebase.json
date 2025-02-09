@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "public": "public",
+    "public": "dist/boccia-timer",
     "ignore": [
       "firebase.json",
       "**/.*",
