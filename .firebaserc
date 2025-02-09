@@ -1,5 +1,8 @@
 {
   "projects": {
-    "default": "boccia-game-tracker"
-  }
+    "default": "boccia-game-tracker",
+    "prod": "boccia-game-tracker"
+  },
+  "targets": {},
+  "etags": {}
 }
